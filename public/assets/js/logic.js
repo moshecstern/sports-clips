@@ -107,7 +107,34 @@ $("#clear-all-messages").on("click", function() {
     dataType: "json",
     url: "/clearallmessages",
     success: function(response) {
-      $("#results").empty();
+      $(".allmessages").empty();
+      location.reload();
+    }
+  });
+});
+
+// delete all clips
+$("#clear-all-clips").on("click", function() {
+  $.ajax({
+    type: "GET",
+    dataType: "json",
+    url: "/clearallclip",
+    success: function(response) {
+      // $(".allmessages").empty();
+      location.reload();
+    }
+  });
+});
+
+// delete all clips
+$("#clear-all-stocks").on("click", function() {
+  $.ajax({
+    type: "GET",
+    dataType: "json",
+    url: "/clearallstock",
+    success: function(response) {
+      // $(".allmessages").empty();
+      location.reload();
     }
   });
 });
