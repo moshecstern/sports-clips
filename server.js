@@ -10,7 +10,7 @@ var mongoose = require("mongoose");
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/newssite";
 // Connect to the Mongo DB
 // mongoose.connect("mongodb://localhost/newssite", { useNewUrlParser: true });
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Initialize Express
 var app = express();
