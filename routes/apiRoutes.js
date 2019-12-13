@@ -201,16 +201,16 @@ app.get("/clearallclip", function(req, res) {
 
 
 
-// NOT WORKING
 // delete note SPECIFIC
 app.get("/deletemessage/:id", function(req, res) {
-  db.Comment.deleteOne({
+  console.log("backend");
+  db.Comment.remove({
     _id: req.params.id
         // return db.Comment.findOneAndUpdate({_id: req.params.id}, {$push: {comment: dbcomment._id}}, {new: true});
-  }),
-  function(error, removed) {
+  }).then(function(error, removed) {
     if (error) {
       console.log(error);
+      console.log(removed);
       res.send(error);
   }
   else {
@@ -219,7 +219,55 @@ app.get("/deletemessage/:id", function(req, res) {
     console.log(removed);
     res.send(removed);
   }
-}
+  console.log("removing??")
+  
+})
+});
+
+// delete clip SPECIFIC
+app.get("/deleteclip/:id", function(req, res) {
+  console.log("backend");
+  db.Clip.remove({
+    _id: req.params.id
+        // return db.Comment.findOneAndUpdate({_id: req.params.id}, {$push: {comment: dbcomment._id}}, {new: true});
+  }).then(function(error, removed) {
+    if (error) {
+      console.log(error);
+      console.log(removed);
+      res.send(error);
+  }
+  else {
+    // Otherwise, send the mongojs response to the browser
+    // This will fire off the success function of the ajax request
+    console.log(removed);
+    res.send(removed);
+  }
+  console.log("removing??")
+  
+})
+});
+
+// delete stock SPECIFIC
+app.get("/deletestock/:id", function(req, res) {
+  console.log("backend");
+  db.Stock.remove({
+    _id: req.params.id
+        // return db.Comment.findOneAndUpdate({_id: req.params.id}, {$push: {comment: dbcomment._id}}, {new: true});
+  }).then(function(error, removed) {
+    if (error) {
+      console.log(error);
+      console.log(removed);
+      res.send(error);
+  }
+  else {
+    // Otherwise, send the mongojs response to the browser
+    // This will fire off the success function of the ajax request
+    console.log(removed);
+    res.send(removed);
+  }
+  console.log("removing??")
+  
+})
 });
 
   // .then(function (dbcomment){

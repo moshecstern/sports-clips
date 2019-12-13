@@ -141,53 +141,69 @@ $("#clear-all-stocks").on("click", function() {
 
 
 
+
+
 // delete post
 $(document).on("click", ".deletemessage", function() {
   // Grab the id associated with the article from the submit button
   var thisId = $(this).attr("data-id");
   console.log("Deleting message ....");
-
+  console.log(thisId);
   $.ajax({
     method: "GET",
-    url: "/deletemessage/" + thisId,
-    success: function(response) {
-      console.log(response)
-      response.remove();
-        // Value taken from title input
-        $("#titleinput").val("");
-        // Value taken from note textarea
-         $("#bodyinput").val("");
-    }
+    url: "/deletemessage/" + thisId
+  }).then(function(){
+    location.reload();
+    $("#titleinput").val("");
+    // Value taken from note textarea
+     $("#bodyinput").val("");
   })
 });
-//     // With that done
-//     .then(function(data) {
-//       // Log the response
-//       console.log(data);
-//       // Empty the messages section
-//       $("#messages").empty();
-// });
 
 // delete stock or clip specific
+// $(document).on("click", ".deleteid", function() {
+//   // Grab the id associated with the article from the submit button
+//   var thisId = $(this).attr("data-id");
+//   console.log("Deleting News article....");
+//   var thistype = $(this).attr("data-class");
+//   if(thistype === "news"){
+//     query = "/deleteclip/";
+//   }else if(thistype === "stock"){
+//     query = "/deletestock/"
+//   }
+//   $.ajax({
+//     method: "GET",
+//     url: query + thisId,
+//     success: function(response) {
+//       /// ERRROR
+// location.reload();
+//     }
+//   })
+// });
+
+
+
+// delete stock or clip specific
+
 $(document).on("click", ".deleteid", function() {
   // Grab the id associated with the article from the submit button
   var thisId = $(this).attr("data-id");
-  console.log("Deleting News article....");
+  console.log("Deleting news or clip ....");
+  console.log(thisId);
   var thistype = $(this).attr("data-class");
   if(thistype === "news"){
     query = "/deleteclip/";
   }else if(thistype === "stock"){
     query = "/deletestock/"
   }
+  console.log(thistype)
   $.ajax({
     method: "GET",
-    url: query + thisId,
-    success: function(response) {
-      response.remove();
-        // Value taken from title input
-        // $("#titleinput").val("");
-        // Value taken from note textarea
-        //  $("#bodyinput").val("");
-    }
+    url: query + thisId
+  }).then(function(){
+    location.reload();
+    // $("#titleinput").val("");
+    // // Value taken from note textarea
+    //  $("#bodyinput").val("");
   })
 });

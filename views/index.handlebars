@@ -2,13 +2,13 @@
 <div class="row">
 <div class="resultsA col-md-5">  
     <h3 class="header">Funny News</h3>
-            <h5><button id="clear-all-clips">Delete All</button></h5>
 
     {{!-- <h4 class="clear-all">Clear all news</h4> --}}
     {{!-- <h4>Serious News</h4>
 <h5><a href="https://news.yahoo.com/">Yahoo News</a> </h5> --}}
   <div id="buttons">
     <button class="btn" id="scrapefb">scrape</button>
+            <button id="clear-all-clips">Delete All</button>
   </div>
       <div id="results">
             {{#each Clip}}
@@ -22,7 +22,7 @@
     <p class="card-text">{{info}}</p>
     <a href="{{link}}" class="btn btn-primary center-block">Read More</a>
     <button class="btn center-block addmessage" data-class="news" data-id={{_id}}>Add Message</button>
-        <button class="btn center-block deleteid" data-id={{_id}}>Delete</button>
+        <button class="btn center-block deleteid" data-class="news" data-id={{_id}}>Delete</button>
 
   </div>
 </div>
@@ -34,11 +34,11 @@
 <div class="resultsA col-md-5 overflow-auto">  
 
     <h3 class="header">Stock Stories</h3>
-        <h5><button id="clear-all-stocks">Delete All</button></h5>
         {{!-- <h4>other Stock News</h4>
 <h5><a href="https://www.marketwatch.com/">Market Watch</a> </h5> --}}
   <div id="buttons">
     <button class="btn" id="scrapestock">scrape</button>
+        <button id="clear-all-stocks">Delete All</button>
   </div>
       <div id="results">
             {{#each Stock}}
@@ -49,7 +49,7 @@
     <p class="card-text">{{source}}</p>
     <a href={{link}} class="btn btn-primary">Read More here!</a>
         <button class="btn addmessage" data-class="stock" data-id={{_id}}>Add Message</button>
-        <button class="btn deleteid" data-id={{_id}}>Delete</button>
+        <button class="btn deleteid" data-class="stock" data-id={{_id}}>Delete</button>
   </div>
 </div>
             {{/each}}
@@ -73,7 +73,7 @@
     <p class="card-text">{{body}}</p>
     {{!-- <a href={{link}} class="btn btn-primary">Read More here!</a> --}}
         <button class="btn addmessage" data-class="stock" data-id={{_id}}>Add Message</button>
-        <button class="btn deletemessage" data-id={{_id}}>Delete</button>
+        <button class="btn deletemessage"  data-id={{_id}}>Delete</button>
   </div>
 </div>
             {{/each}}
