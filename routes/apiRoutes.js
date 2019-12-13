@@ -1,12 +1,12 @@
 // // need to export
 var db = require("../models");
-var mongoose = require("mongoose");
+// var mongoose = require("mongoose");
 var axios = require("axios");
 var cheerio = require("cheerio");
 // var express = require("express");
 // var app = express();
 
-mongoose.connect("mongodb://localhost/newssite", { useNewUrlParser: true });
+// mongoose.connect("mongodb://localhost/newssite", { useNewUrlParser: true });
 
 module.exports = function(app) {
 
