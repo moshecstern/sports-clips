@@ -81,22 +81,22 @@ app.post("/clip/:id", function(req, res) {
 app.get("/scrapestock", function (req, res) {
   console.log("Scraping!! 2nd website")
       // axios.get("http://www.nfl.com/videos/nfl-game-highlights").then(function (response) {
-        axios.get("https://stocknews.com/top-stories/").then(function(response2) {
+        axios.get("https://www.fool.co.uk/").then(function(response2) {
   console.log("got 2nd website");
         // Load the HTML into cheerio and save it to a variable
         // '$' becomes a shorthand for cheerio's selector commands, much like jQuery's '$'
         var $ = cheerio.load(response2.data);
-        $("article .margin-bottom").each(function(i, element) {
+        $(".wrapper").each(function(i, element) {
           // Save an empty result object
           console.log("got class of website")
           // console.log(element);
           var result3 = {};
           
           // console.log($(this));
-          result3.source = $(this).find("h3 a").text();
-          result3.link = $(this).find("h3 a").attr("href");
-          result3.img = $(this).find("a img").attr("src");
-          // result3.info = $(this).find("a h3").text();
+          result3.source = $(this).find("p").text();
+          result3.link = $(this).attr("href");
+          result3.img = $(this).find("img").attr("src");
+          result3.info = $(this).find("p").find("h3").text();
           // result3.article = $(this).find("img").attr("alt");
 
           console.log(result3.source);
