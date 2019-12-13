@@ -21,6 +21,7 @@ $("#scrapestock").on("click", function (event) {
 }) // end of on click
 
 
+
 $(".addmessage").on("click", function() {
   var thistype = $(this).attr("data-class");
   if(thistype === "news"){
@@ -60,27 +61,6 @@ $(".addmessage").on("click", function() {
       $("#bodyinput").val(data.comment.body);
 
     }
-// // second ajax call
-// $.ajax({
-//   method: "GET",
-//   url: "/stock/" + thisId
-// })
-// .then(function(data2) {
-//   // console.log(data);
-//   console.log(data2);
-//   $("#messages").append("<h4>" + data2.info + "</h4>");
-//     // An input to enter a new title
-//     $("#messages").append("<input id='titleinput' val='"+data2.name +"' name='title' >");
-//     // A textarea to add a new note body
-//     $("#messages").append("<textarea id='bodyinput' name='body'>"+data2.body+"</textarea>");
-//     // A button to submit a new note, with the id of the article saved to it
-//     $("#messages").append("<button data-id='" + data2._id + "' id='savenote'>Save Note</button>");
-
-//   if (data2.comment) {
-//     $("#titleinput").val(data2.comment.name);
-//     $("#bodyinput").val(data2.comment.body);
-
-//   }
 // }); // end of 2nd ajax call
   }) // end of first ajax call
 }) // end of on click function
@@ -118,4 +98,68 @@ $(document).on("click", "#savenote", function() {
   // Also, remove the values entered in the input and textarea for note entry
   $("#titleinput").val("");
   $("#bodyinput").val("");
+});
+
+// delete all messsages
+$("#clear-all-messages").on("click", function() {
+  $.ajax({
+    type: "GET",
+    dataType: "json",
+    url: "/clearallmessages",
+    success: function(response) {
+      $("#results").empty();
+    }
+  });
+});
+
+
+
+// delete post
+$(document).on("click", ".deletemessage", function() {
+  // Grab the id associated with the article from the submit button
+  var thisId = $(this).attr("data-id");
+  console.log("Deleting message ....");
+
+  $.ajax({
+    method: "GET",
+    url: "/deletemessage/" + thisId,
+    success: function(response) {
+      selected.remove();
+        // Value taken from title input
+        $("#titleinput").val("");
+        // Value taken from note textarea
+         $("#bodyinput").val("");
+    }
+  })
+});
+//     // With that done
+//     .then(function(data) {
+//       // Log the response
+//       console.log(data);
+//       // Empty the messages section
+//       $("#messages").empty();
+// });
+
+// delete stock or clip specific
+$(document).on("click", ".deleteid", function() {
+  // Grab the id associated with the article from the submit button
+  var thisId = $(this).attr("data-id");
+  console.log("Deleting News article....");
+  var thistype = $(this).attr("data-class");
+  if(thistype === "news"){
+    query = "/deleteclip/";
+  }else if(thistype === "stock"){
+    query = "/deletestock/"
+  }
+  $.ajax({
+    method: "GET",
+    url: query + thisId,
+    success: function(response) {
+      selected.remove();
+        // Value taken from title input
+        // $("#titleinput").val("");
+        // Value taken from note textarea
+        //  $("#bodyinput").val("");
+    }
+  })
 });

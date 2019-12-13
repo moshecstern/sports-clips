@@ -142,5 +142,71 @@ app.get("/scrapestock", function (req, res) {
         res.json(err);
       })
     });
+
+// delete all messages (clear db) 
+app.get("/clearallmessages", function(req, res) {
+  // Remove every note from the notes collection
+  db.Comment.remove({}, function(error, response) {
+    // Log any errors to the console
+    if (error) {
+      console.log(error);
+      res.send(error);
+    }
+    else {
+      // Otherwise, send the mongojs response to the browser
+      // This will fire off the success function of the ajax request
+      console.log(response);
+      res.send(response);
+    }
+  });
+});
+// delete stock db
+app.get("/deletestock/:id", function(req, res) {
+  db.Comment.deleteOne(req.body)
+  .then(function (dbcomment){
+    return db.Stock.findOneAndUpdate({_id: req.params.id}, {$push: {comment: dbcomment._id}}, {new: true});
+  })
+  .then(function(dbdata) {
+    res.json(dbdata)
+  })
+  .catch(function(err){
+    res.json(err);
+  })
+});
+
+// delete clip db
+
+
+// delete note
+app.get("/deletemessage/:id", function(req, res) {
+  db.Comment.deleteOne({
+    _id: req.params.id
+  }),
+  function(error, removed) {
+    if (error) {
+      console.log(error);
+      res.send(error);
+  }
+  else {
+    // Otherwise, send the mongojs response to the browser
+    // This will fire off the success function of the ajax request
+    console.log(removed);
+    res.send(removed);
+  }
+}
+});
+
+  // .then(function (dbcomment){
+    // return db.Comment.findOneAndUpdate({_id: req.params.id}, {$push: {comment: dbcomment._id}}, {new: true});
+  // })
+//   .then(function(dbdata) {
+//     res.json(dbdata)
+//   })
+//   .catch(function(err){
+//     res.json(err);
+//   })
+// });
+
+
 // end of api routes
 }

@@ -2,6 +2,7 @@
 <div class="row">
 <div class="resultsA col-md-5">  
     <h3 class="header">Funny News</h3>
+    {{!-- <h4 class="clear-all">Clear all news</h4> --}}
     {{!-- <h4>Serious News</h4>
 <h5><a href="https://news.yahoo.com/">Yahoo News</a> </h5> --}}
   <div id="buttons">
@@ -19,7 +20,7 @@
     <p class="card-text">{{info}}</p>
     <a href="{{link}}" class="btn btn-primary center-block">Read More</a>
     <button class="btn center-block addmessage" data-class="news" data-id={{_id}}>Add Message</button>
-        <button class="btn center-block" id="delete" data-id={{_id}}>Delete</button>
+        <button class="btn center-block deleteid" data-id={{_id}}>Delete</button>
 
   </div>
 </div>
@@ -41,11 +42,11 @@
 <div class="card" style="width: 18rem;">
   <img class="card-img-top" src="{{img}}" alt="Card image cap">
   <div class="card-body">
-    <h5 class="card-title" data-id="{{_id}}">{{title}}</h5>
+    <h5 class="card-title" data-id={{_id}}>{{title}}</h5>
     <p class="card-text">{{source}}</p>
     <a href={{link}} class="btn btn-primary">Read More here!</a>
         <button class="btn addmessage" data-class="stock" data-id={{_id}}>Add Message</button>
-        <button class="btn" id="delete" data-id={{_id}}>Delete</button>
+        <button class="btn deleteid" data-id={{_id}}>Delete</button>
   </div>
 </div>
             {{/each}}
@@ -56,17 +57,20 @@
  <div class="col-md-2" id="messages"></div>
 </div>
 <div class="row">
-  <div class="col">
+  <div class="col allmessages">
+    <h4>All Messages</h4>
+    <h5>        <button id="clear-all-messages">Delete All</button>
+</h5>
                 {{#each Comment}}
 <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="{{_id.img}}" alt="Card image cap">
+  <img class="card-img-top" src={{this.img}} alt="Card image cap">
   <div class="card-body">
         <h5 class="card-title" data-id="{{_id}}">{{title}}</h5>
-    <h5 class="card-title" data-id="{{_id}}">{{name}}</h5>
+    <h5 class="card-title" data-id={{_id}}>{{name}}</h5>
     <p class="card-text">{{body}}</p>
     {{!-- <a href={{link}} class="btn btn-primary">Read More here!</a> --}}
         <button class="btn addmessage" data-class="stock" data-id={{_id}}>Add Message</button>
-        <button class="btn" id="delete" data-id={{_id}}>Delete</button>
+        <button class="btn deletemessage" data-id={{_id}}>Delete</button>
   </div>
 </div>
             {{/each}}
