@@ -7,9 +7,10 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 // var models = require("./models");
 var mongoose = require("mongoose");
-
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/newssite";
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/newssite", { useNewUrlParser: true });
+// mongoose.connect("mongodb://localhost/newssite", { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI);
 
 // Initialize Express
 var app = express();
