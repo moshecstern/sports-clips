@@ -7,9 +7,13 @@ module.exports = function (app) {
       .then(function (dbClips) {
         db.Stock.find({})
         .then(function (dbStock) {
-          res.render("index", {
-            Clip: dbClips,
-            Stock: dbStock
+          db.Comment.find({})
+          .then(function (dbComment){
+            res.render("index", {
+              Clip: dbClips,
+              Stock: dbStock,
+              Comment: dbComment
+            })
           });
         });
       });

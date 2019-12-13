@@ -7,11 +7,11 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 // var models = require("./models");
 var mongoose = require("mongoose");
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://moshecstern@gmail.com:password1@ds253388.mlab.com:53388/heroku_8ch0gv8c" || "mongodb://localhost/newssite" ;
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://moshecstern@gmail.com:password1@ds253388.mlab.com:53388/heroku_8ch0gv8c" || "mongodb://localhost/newssite";
 // Connect to the Mongo DB
 PORT = process.env.PORT || 3000;
 // mongoose.connect("mongodb://localhost/newssite", { useNewUrlParser: true });
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, { uri_decode_auth: true });
 
 // Initialize Express
 var app = express();
@@ -42,5 +42,5 @@ require("./routes/htmlRoutes")(app);
 
 // Set the app to listen on port 3000
 app.listen(PORT, function() {
-  console.log("App running on port 3000!");
+  console.log("App running on port "+ PORT+ " !");
 });
