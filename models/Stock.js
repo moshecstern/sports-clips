@@ -16,7 +16,7 @@ var StockSchema = new Schema({
     img: {
         type: String
     },
-    info:{
+    title:{
         type: String
     },
     article:{

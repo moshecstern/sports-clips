@@ -1,10 +1,11 @@
 <div class="container">
 <div class="row">
 <div class="resultsA col-md-5">  
-    <h3 class="header">Funny News Stories</h3>
+    <h3 class="header">Funny News</h3>
+    {{!-- <h4>Serious News</h4>
+<h5><a href="https://news.yahoo.com/">Yahoo News</a> </h5> --}}
   <div id="buttons">
     <button class="btn" id="scrapefb">scrape</button>
-    {{!-- <button class="btn" id="name-sort">Sort By Name</button> --}}
   </div>
       <div id="results">
             {{#each Clip}}
@@ -14,34 +15,24 @@
 <div class="card" style="width: 18rem;">
   <img class="card-img-top" src="{{img}}" alt="Card image cap">
   <div class="card-body">
-    <h5 class="card-title" data-id="{{_id}}">{{title}}</h5>
+    <h5 class="card-title" data-id={{_id}}>{{title}}</h5>
     <p class="card-text">{{info}}</p>
-    <a href="{{link}}" class="btn btn-primary">Read More</a>
+    <a href="{{link}}" class="btn btn-primary center-block">Read More</a>
+    <button class="btn center-block addmessage" data-class="news" data-id={{_id}}>Add Message</button>
+        <button class="btn center-block" id="delete" data-id={{_id}}>Delete</button>
+
   </div>
 </div>
             {{/each}}
     </div>
-            {{!-- <form>
-            <input id='titleinput' name='title' ></p>
-            <textarea id='bodyinput' name='body'></textarea>
-            <button data-id="{{_id}}"id='savenote'>Save Comment</button>"
-            </form> --}}
-            {{!-- fill in lines for showing data --}}
-        {{!-- </tbody>
-    </table> --}}
-    {{!-- <div id="messages">{{#each Comment}}
-         <form>
-            <input id='titleinput' val='{{Comment.title}}'name='title' ></p>
-            <textarea id='bodyinput' val='{{Comment.body}}'name='body'></textarea>
-            <button data-id="{{_id}}"id='savenote'>Save Comment</button>"
-            </form>
-</div>
-    {{/each}} --}}
+   
 </div> 
 <!-- end of funny news div -->
-<div class="resultsB col-md-5">  
+<div class="resultsA col-md-5 overflow-auto">  
 
     <h3 class="header">Stock Stories</h3>
+        {{!-- <h4>other Stock News</h4>
+<h5><a href="https://www.marketwatch.com/">Market Watch</a> </h5> --}}
   <div id="buttons">
     <button class="btn" id="scrapestock">scrape</button>
   </div>
@@ -50,29 +41,15 @@
 <div class="card" style="width: 18rem;">
   <img class="card-img-top" src="{{img}}" alt="Card image cap">
   <div class="card-body">
-    <h5 class="card-title" data-id="{{_id}}">{{info}}</h5>
+    <h5 class="card-title" data-id="{{_id}}">{{title}}</h5>
     <p class="card-text">{{source}}</p>
     <a href={{link}} class="btn btn-primary">Read More here!</a>
+        <button class="btn addmessage" data-class="stock" data-id={{_id}}>Add Message</button>
+        <button class="btn" id="delete" data-id={{_id}}>Delete</button>
   </div>
 </div>
             {{/each}}
     </div>
-            {{!-- <form>
-            <input id='titleinput' name='title' ></p>
-            <textarea id='bodyinput' name='body'></textarea>
-            <button data-id="{{_id}}"id='savenote'>Save Comment</button>"
-            </form> --}}
-            {{!-- fill in lines for showing data --}}
-        {{!-- </tbody>
-    </table> --}}
-    {{!-- <div id="messages">{{#if Comment}}
-         <form>
-            <input id='titleinput' val={{title}} name='title' />
-            <textarea id='bodyinput' val={{body}} name='body'></textarea>
-            <button data-id={{_id}} id='savenote'>Save Comment</button>
-            </form>
-</div>
-    {{/if}} --}}
 </div> 
 <!-- end of resultsB div -->
 

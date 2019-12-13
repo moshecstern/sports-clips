@@ -5,15 +5,18 @@
 body{
     background-color: aqua;
 }
-/* .resultsA{
-    width: 40%;
-    float: left;
+/* .resultsA{ */
+    /* width: 40%; */
+    /* height */
+/* } */
+/* .resultsB{ */
+    /* width: 40%; */
+/* }
+.c{ */
+    /* width:20%; */
+    
+/* } */
+.resultsA{
+    height: 700px;
+    overflow-y: scroll;
 }
-.resultsB{
-    width: 40%;
-    float: right; 
-}
-.c{
-    width:20%;
-    float: right;
-} */

@@ -1,3 +1,4 @@
+var query;
 
 $("#scrapefb").on("click", function (datab) {
   console.log("clicked!");
@@ -14,28 +15,43 @@ $("#scrapestock").on("click", function (event) {
   console.log("clicked!");
   event.preventDefault();
   $.get("/scrapestock", function (dataca) {
-    //location.reload();
+    location.reload();
     console.log(dataca);
   })// end of retrieving data
 }) // end of on click
 
 
-$(document).on("click", "h5", function() {
+$(".addmessage").on("click", function() {
+  var thistype = $(this).attr("data-class");
+  if(thistype === "news"){
+    query = "/clip/";
+  }else if(thistype === "stock"){
+    query = "/stock/"
+  }
+  console.log("********")
+  console.log(thistype);
+  console.log("*********")
   $("#messages").empty();
-  console.log("clicking on this h5")
   var thisId = $(this).attr("data-id");
+  console.log("clicking on "+thisId+" adding clicked")
   $.ajax({
     method: "GET",
-    url: "/clip/" + thisId
+    url: query + thisId
   })
   .then(function(data) {
     // console.log(data);
     console.log(data);
-    $("#messages").append("<h4>" + data.title + "</h4>");
+    var body;
+    if(data.body == undefined){
+      body = "Add Your Message Here"
+    } else {
+      body = data.body
+    }
+    $("#messages").append("<h5>" + data.title + "</h5>");
       // An input to enter a new title
       $("#messages").append("<input id='titleinput' val='"+data.name +"' name='title' >");
       // A textarea to add a new note body
-      $("#messages").append("<textarea id='bodyinput' name='body'>"+data.body+"</textarea>");
+      $("#messages").append("<textarea id='bodyinput' name='body'>"+body+"</textarea>");
       // A button to submit a new note, with the id of the article saved to it
       $("#messages").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
 
@@ -44,19 +60,46 @@ $(document).on("click", "h5", function() {
       $("#bodyinput").val(data.comment.body);
 
     }
-  })
-})
+// // second ajax call
+// $.ajax({
+//   method: "GET",
+//   url: "/stock/" + thisId
+// })
+// .then(function(data2) {
+//   // console.log(data);
+//   console.log(data2);
+//   $("#messages").append("<h4>" + data2.info + "</h4>");
+//     // An input to enter a new title
+//     $("#messages").append("<input id='titleinput' val='"+data2.name +"' name='title' >");
+//     // A textarea to add a new note body
+//     $("#messages").append("<textarea id='bodyinput' name='body'>"+data2.body+"</textarea>");
+//     // A button to submit a new note, with the id of the article saved to it
+//     $("#messages").append("<button data-id='" + data2._id + "' id='savenote'>Save Note</button>");
+
+//   if (data2.comment) {
+//     $("#titleinput").val(data2.comment.name);
+//     $("#bodyinput").val(data2.comment.body);
+
+//   }
+// }); // end of 2nd ajax call
+  }) // end of first ajax call
+}) // end of on click function
 
 
 $(document).on("click", "#savenote", function() {
   // Grab the id associated with the article from the submit button
   var thisId = $(this).attr("data-id");
   console.log("Saving note....");
-
+  var thistype = $(this).attr("data-class");
+  if(thistype === "news"){
+    query = "/clip/";
+  }else if(thistype === "stock"){
+    query = "/stock/"
+  }
   // Run a POST request to change the note, using what's entered in the inputs
   $.ajax({
     method: "POST",
-    url: "/clip/" + thisId,
+    url: query + thisId,
     data: {
       // Value taken from title input
       name: $("#titleinput").val(),

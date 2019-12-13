@@ -96,7 +96,7 @@ app.get("/scrapestock", function (req, res) {
           result3.source = $(this).find("p").text();
           result3.link = $(this).attr("href");
           result3.img = $(this).find("img").attr("src");
-          result3.info = $(this).find("p").find("h3").text();
+          result3.title = $(this).find("h3").text();
           // result3.article = $(this).find("img").attr("alt");
 
           console.log(result3.source);
@@ -116,5 +116,31 @@ app.get("/scrapestock", function (req, res) {
       });
     }); // end of 2nd scrape
 
+// stock id route
+    app.get("/stock/:id", function(req, res) {
+      db.Stock.findOne({_id : req.params.id})
+      .populate("comment")
+      .then(function (dbcomment) {
+        console.log(dbcomment);
+        console.log("HELOOO")
+        res.json(dbcomment)
+      })
+      .catch(function(err){
+        res.json(err);
+      })
+    })
+    
+    app.post("/stock/:id", function(req, res) {
+      db.Comment.create(req.body)
+      .then(function (dbcomment){
+        return db.Stock.findOneAndUpdate({_id: req.params.id}, {$push: {comment: dbcomment._id}}, {new: true});
+      })
+      .then(function(dbdata) {
+        res.json(dbdata)
+      })
+      .catch(function(err){
+        res.json(err);
+      })
+    });
 // end of api routes
 }
