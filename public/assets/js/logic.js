@@ -151,7 +151,8 @@ $(document).on("click", ".deletemessage", function() {
     method: "GET",
     url: "/deletemessage/" + thisId,
     success: function(response) {
-      selected.remove();
+      console.log(response)
+      response.remove();
         // Value taken from title input
         $("#titleinput").val("");
         // Value taken from note textarea
@@ -182,7 +183,7 @@ $(document).on("click", ".deleteid", function() {
     method: "GET",
     url: query + thisId,
     success: function(response) {
-      selected.remove();
+      response.remove();
         // Value taken from title input
         // $("#titleinput").val("");
         // Value taken from note textarea
