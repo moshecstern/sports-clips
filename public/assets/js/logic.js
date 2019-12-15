@@ -66,40 +66,48 @@ $(".addmessage").on("click", function() {
 }) // end of on click function
 
 
-$(document).on("click", "#savenote", function() {
-  // Grab the id associated with the article from the submit button
-  var thisId = $(this).attr("data-id");
-  console.log("Saving note....");
-  var thistype = $(this).attr("data-class");
-  if(thistype === "news"){
-    query = "/clip/";
-  }else if(thistype === "stock"){
-    query = "/stock/"
-  }
-  $.ajax({
-    method: "POST",
-    url: query + thisId,
-    data: {
-      // Value taken from title input
-      name: $("#titleinput").val(),
-      // Value taken from note textarea
-      body: $("#bodyinput").val()
-    }
-  })
-    // With that done
-    .then(function(data) {
-      // Log the response
-      console.log(data);
-      // Empty the messages section
-      $("#messages").empty();
-      location.reload();
+// // save articles
 
-    });
+// $(document).on("click", ".save-clip", function() {
+//   // Grab the id associated with the article from the submit button
+//   var thisId = $(this).attr("data-id");
+//   var thisimg = $(this).attr("data-img");
+//   var thistitle = $(this).attr("data-title");
 
-  // Also, remove the values entered in the input and textarea for note entry
-  $("#titleinput").val("");
-  $("#bodyinput").val("");
-});
+//   console.log(thisimg)
+//   console.log(thistitle)
+
+//   console.log("Saving note....");
+//   // var thistype = $(this).attr("data-class");
+//   // if(thistype === "news"){
+//   //   query = "/save/clip/";
+//   // }else if(thistype === "stock"){
+//   //   query = "/save/stock/"
+//   // }
+//   $.ajax({
+//     method: "POST",
+//     url: "/save/clip/" + thisId,
+//     data: {
+//       // Value taken from title input
+//       name: $("#titleinput").val(),
+//       // Value taken from note textarea
+//       body: $("#bodyinput").val()
+//     }
+//   })
+//     // With that done
+//     .then(function(data) {
+//       // Log the response
+//       console.log(data);
+//       // Empty the messages section
+//       $("#messages").empty();
+//       location.reload();
+
+//     });
+
+//   // Also, remove the values entered in the input and textarea for note entry
+//   $("#titleinput").val("");
+//   $("#bodyinput").val("");
+// });
 
 // delete all messsages
 $("#clear-all-messages").on("click", function() {
@@ -228,3 +236,4 @@ $(".update-comment").on("click", function() {
 }) // end of on click function
 
 // save-article
+

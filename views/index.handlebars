@@ -1,6 +1,6 @@
 <div class="container">
 <div class="row">
-<div class="resultsA col-md-5">  
+<div class="resultsA col-md-5 ">  
     <h3 class="header">Funny News</h3>
 
     {{!-- <h4 class="clear-all">Clear all news</h4> --}}
@@ -23,7 +23,7 @@
     <a href="{{link}}" class="btn btn-primary center-block">Read More</a>
     <button class="btn center-block addmessage" data-class="news" data-id={{_id}}>Add Message</button>
         <button class="btn center-block deleteid" data-class="news" data-id={{_id}}>Delete</button>
-        <button class="btn save-article" data-class="stock" data-id={{_id}}>Save Article</button>
+        {{!-- <button class="btn save-clip" data-class="stock" data-id={{_id}}>Save Article</button> --}}
 
   </div>
 </div>
@@ -51,7 +51,7 @@
     <a href={{link}} class="btn btn-primary">Read More here!</a>
         <button class="btn addmessage" data-class="stock" data-id={{_id}}>Add Message</button>
         <button class="btn deleteid" data-class="stock" data-id={{_id}}>Delete</button>
-        <button class="btn save-article" data-class="stock" data-id={{_id}}>Save Article</button>
+        {{!-- <button class="btn save-article" data-class="stock" data-id={{_id}}>Save Article</button> --}}
 
   </div>
 </div>
@@ -68,14 +68,14 @@
     <h5>        <button id="clear-all-messages">Delete All</button>
 </h5>
                 {{#each Comment}}
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src={{Comment.img}} alt="Card image cap">
+<div class="card comment-card" style="width: 18rem;">
+  {{!-- <img class="card-img-top" src={{img}} alt="Card image cap"> --}}
   <div class="card-body">
         <h4 class="card-title" data-id="{{_id}}">{{timestamp}}</h4>
     <h5 class="card-title" data-id={{_id}}>{{name}}</h5>
     <p class="card-text">{{body}}</p>
     {{!-- <a href={{link}} class="btn btn-primary">Read More here!</a> --}}
-        <button class="btn update-comment" data-class="stock" data-id={{_id}}>Update message</button>
+        {{!-- <button class="btn update-comment" data-class="stock" data-id={{_id}}>Update message</button> --}}
         <button class="btn deletemessage"  data-id={{_id}}>Delete</button>
   </div>
 </div>
