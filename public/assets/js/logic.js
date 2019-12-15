@@ -76,7 +76,6 @@ $(document).on("click", "#savenote", function() {
   }else if(thistype === "stock"){
     query = "/stock/"
   }
-  // Run a POST request to change the note, using what's entered in the inputs
   $.ajax({
     method: "POST",
     url: query + thisId,
@@ -93,6 +92,8 @@ $(document).on("click", "#savenote", function() {
       console.log(data);
       // Empty the messages section
       $("#messages").empty();
+      location.reload();
+
     });
 
   // Also, remove the values entered in the input and textarea for note entry
@@ -160,28 +161,6 @@ $(document).on("click", ".deletemessage", function() {
   })
 });
 
-// delete stock or clip specific
-// $(document).on("click", ".deleteid", function() {
-//   // Grab the id associated with the article from the submit button
-//   var thisId = $(this).attr("data-id");
-//   console.log("Deleting News article....");
-//   var thistype = $(this).attr("data-class");
-//   if(thistype === "news"){
-//     query = "/deleteclip/";
-//   }else if(thistype === "stock"){
-//     query = "/deletestock/"
-//   }
-//   $.ajax({
-//     method: "GET",
-//     url: query + thisId,
-//     success: function(response) {
-//       /// ERRROR
-// location.reload();
-//     }
-//   })
-// });
-
-
 
 // delete stock or clip specific
 
@@ -207,3 +186,45 @@ $(document).on("click", ".deleteid", function() {
     //  $("#bodyinput").val("");
   })
 });
+
+// update-comment    not done yet
+$(".update-comment").on("click", function() {
+  // var thistype = $(this).attr("data-class");
+  $("#messages").empty();
+  var thisId = $(this).attr("data-id");
+  console.log("********")
+  console.log(Comment.name);
+  // console.log(thistype);
+  console.log("*********")
+  console.log("clicking on "+thisId+" adding clicked")
+  $.ajax({
+    method: "GET",
+    url: "/updatecomment/" + thisId
+  })
+  .then(function(data) {
+    // console.log(data);
+    // console.log(data);
+    var body;
+    if(data.body == undefined){
+      body = "Add Your Message Here"
+    } else {
+      body = data.body
+    }
+    $("#messages").append("<h5>" + data.title + "</h5>");
+      // An input to enter a new title
+      $("#messages").append("<input id='titleinput' val='"+data.name +"' name='title' >");
+      // A textarea to add a new note body
+      $("#messages").append("<textarea id='bodyinput' name='body'>"+body+"</textarea>");
+      // A button to submit a new note, with the id of the article saved to it
+      $("#messages").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
+
+    if (data.comment) {
+      $("#titleinput").val(data.comment.name);
+      $("#bodyinput").val(data.comment.body);
+
+    }
+// }); // end of 2nd ajax call
+  }) // end of first ajax call
+}) // end of on click function
+
+// save-article

@@ -29,7 +29,8 @@ console.log("Scraping!!")
         result2.info = $(this).children().find("p").text();
         result2.img = $(this).find("img").attr("src");
         result2.link = $(this).children().children().find("a").attr("href");
-        
+        result2.added = Date.now();
+
         console.log(result2.title);
 
         // DAVE: Maybe add a findOne on the link to see if that exists already.
@@ -97,6 +98,7 @@ app.get("/scrapestock", function (req, res) {
           result3.link = $(this).attr("href");
           result3.img = $(this).find("img").attr("src");
           result3.title = $(this).find("h3").text();
+          result3.added = Date.now();
           // result3.article = $(this).find("img").attr("alt");
 
           console.log(result3.source);
