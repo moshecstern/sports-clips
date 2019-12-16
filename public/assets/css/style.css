@@ -24,15 +24,3 @@ body{
 .comment-card{
     background-color: #ee6e73;
 }
-html {overflow-y: scroll;}
-@media(device-width: 768px) and (device-height: 1024px){
-    .resultsA::-webkit-scrollbar {
-        -webkit-appearance: none;
-        width: 7px;
-    }
-    .resultsA::-webkit-scrollbar-thumb {
-        border-radius: 4px;
-        background-color: rgba(0,0,0,.5);
-        -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
-    }
-}
