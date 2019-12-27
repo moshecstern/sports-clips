@@ -2,8 +2,6 @@
 An app that brings you sports highlights from all different sports
 
 
-# LIBERTY BEANS
-
 #### DEPLOYED APP:
 https://aqueous-dusk-11498.herokuapp.com/
 
